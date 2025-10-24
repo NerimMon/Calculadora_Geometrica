@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora Geométrica 3D - Explosión de Color</title>
+    <link rel="stylesheet" type="text/css" href="CALCULADORAGEO.CSS" />
+    <script type="text/javascript" src="CALCULADORAGEO.JS">
+        </script>
+</head>
+
+<body onload="init();">
+    <div id="background-container"></div>
+
+    <h1>Calculadora Geométrica</h1>
+
+    <div id="errorMessage" class="error-message hide">Para realizar el cálculo es necesario proporcionar todos los valores requeridos.
+    </div>
+    <div id="successMessage" class="success-message hide">El cálculo se realizó exitósamente</div>
+
+    <div id="mainContainer">
+
+        <div id="menuOperacion" class="menu-columna">
+            <h2>Operación</h2>
+            <div id="divOperacionSeleccion">
+                <div>
+                    <fieldset>
+                        <legend class="hide">Seleccione Operación</legend>
+                        <div class="radio-option">
+                            <input name="operacion" type="radio" value="perimetro" checked id="opPerimetro"><label for="opPerimetro">Perímetro (2D)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input name="operacion" type="radio" value="area" id="opArea"><label for="opArea">Área / Superficie</label>
+                        </div>
+                        <div class="radio-option hide" id="volumenContainer">
+                            <input name="operacion" type="radio" value="volumen" id="opVolumen"><label for="opVolumen">Volumen (3D)</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        
+        <div id="datosCentrales" class="datos-centrales-columna">
+            
+            <div id="contenedorInputs">
+                <div id="divCubo" class="hide">
+                    <h2>Cubo</h2>
+                    <div><label>Lado (Arista) (a)</label></div>
+                    <div><input id="lado-cubo" type="number" /></div>
+                </div>
+                <div id="divPrismaRectangular" class="hide">
+                    <h2>Prisma Rectangular</h2>
+                    <div><label>Largo (L)</label></div>
+                    <div><input id="largo-pr" type="number" /></div>
+                    <div><label>Ancho (W)</label></div>
+                    <div><input id="ancho-pr" type="number" /></div>
+                    <div><label>Altura (H)</label></div>
+                    <div><input id="altura-pr" type="number" /></div>
+                </div>
+                <div id="divCilindro" class="hide">
+                    <h2>Cilindro</h2>
+                    <div><label>Radio (r)</label></div>
+                    <div><input id="radio-cil" type="number" /></div>
+                    <div><label>Altura (h)</label></div>
+                    <div><input id="altura-cil" type="number" /></div>
+                </div>
+                <div id="divCono" class="hide">
+                    <h2>Cono</h2>
+                    <div><label>Radio de la Base (r)</label></div>
+                    <div><input id="radio-cono" type="number" /></div>
+                    
+                    <div id="inputAlturaCono">
+                        <div><label>Altura (h) (Para Volumen)</label></div>
+                        <div><input id="altura-cono" type="number" /></div>
+                    </div>
+                    
+                    <div id="inputGeneratrizCono">
+                        <div><label>Generatriz (g) (Para Superficie)</label></div>
+                        <div><input id="generatriz-cono" type="number" /></div>
+                    </div>
+                </div>
+                <div id="divEsfera" class="hide">
+                    <h2>Esfera</h2>
+                    <div><label>Radio (r)</label></div>
+                    <div><input id="radio-esf" type="number" /></div>
+                </div>
+                <div id="divCuadrado" class="hide">
+                    <h2>Cuadrado</h2>
+                    <div><label>Lado (a)</label></div>
+                    <div><input id="lado-c" type="number" /></div>
+                </div>
+                <div id="divRectangulo" class="hide">
+                    <h2>Rectángulo</h2>
+                    <div><label>Base (b)</label></div>
+                    <div><input id="base-r" type="number" /></div>
+                    <div><label>Altura (h)</label></div>
+                    <div><input id="altura-r" type="number" /></div>
+                </div>
+                <div id="divRombo" class="hide">
+                    <h2>Rombo</h2>
+                    <p class="data-info">Perímetro: Lado (a). Área: Diagonales (D, d).</p>
+                    <div><label>Lado (a) (Perímetro)</label></div>
+                    <div><input id="lado-ro" type="number" /></div>
+                    <div><label>Diagonal Mayor (D) (Área)</label></div>
+                    <div><input id="diag-mayor-ro" type="number" /></div>
+                    <div><label>Diagonal Menor (d) (Área)</label></div>
+                    <div><input id="diag-menor-ro" type="number" /></div>
+                </div>
+                <div id="divParalelogramo" class="hide">
+                    <h2>Paralelogramo</h2>
+                    <p class="data-info">Perímetro: 2 Lados. Área: Base (b) y Altura (h).</p>
+                    <div><label>Base (b) (Lado 1)</label></div>
+                    <div><input id="base-p" type="number" /></div>
+                    <div><label>Lado contiguo (L2) (Perímetro)</label></div>
+                    <div><input id="lado-p" type="number" /></div>
+                    <div><label>Altura (h) (Área)</label></div>
+                    <div><input id="altura-p" type="number" /></div>
+                </div>
+                <div id="divTrapecio" class="hide">
+                    <h2>Trapecio</h2>
+                    <p class="data-info">Perímetro: 4 Lados. Área: Bases (B, b) y Altura (h).</p>
+                    <div><label>Base Mayor (B)</label></div>
+                    <div><input id="base-mayor-t" type="number" /></div>
+                    <div><label>Base Menor (b)</label></div>
+                    <div><input id="base-menor-t" type="number" /></div>
+                    <div><label>Lado 3 (Perímetro)</label></div>
+                    <div><input id="lado-3-t" type="number" /></div>
+                    <div><label>Lado 4 (Perímetro)</label></div>
+                    <div><input id="lado-4-t" type="number" /></div>
+                    <div><label>Altura (h) (Área)</label></div>
+                    <div><input id="altura-t" type="number" /></div>
+                </div>
+                <div id="divTrianguloBaseAltura" class="hide">
+                    <h2>Área de Triángulo (Base/Altura)</h2>
+                    <div><label>Base (b)</label></div>
+                    <div><input id="base-ta" type="number" /></div>
+                    <div><label>Altura (h)</label></div>
+                    <div><input id="altura-ta" type="number" /></div>
+                </div>
+                <div id="divTrianguloEscaleno" class="hide">
+                    <h2>Triángulo Escaleno</h2>
+                    <p class="data-info">Perímetro y Área por 3 Lados (a, b, c).</p>
+                    <div><label>Lado 1 (a)</label></div>
+                    <div><input id="lado-1-te" type="number" /></div>
+                    <div><label>Lado 2 (b)</label></div>
+                    <div><input id="lado-2-te" type="number" /></div>
+                    <div><label>Lado 3 (c)</label></div>
+                    <div><input id="lado-3-te" type="number" /></div>
+                </div>
+                <div id="divTrianguloIsosceles" class="hide">
+                    <h2>Triángulo Isósceles</h2>
+                    <p class="data-info">2 Lados Iguales (L) y 1 Base (b).</p>
+                    <div><label>Lados iguales (L)</label></div>
+                    <div><input id="lado-igual-ti" type="number" /></div>
+                    <div><label>Lado desigual (Base) (b)</label></div>
+                    <div><input id="lado-desigual-ti" type="number" /></div>
+                    <div><label>Altura (h) (Opcional para Área)</label></div>
+                    <div><input id="altura-ti" type="number" /></div>
+                </div>
+                <div id="divTrianguloEquilatero" class="hide">
+                    <h2>Triángulo Equilátero</h2>
+                    <div><label>Lado (L)</label></div>
+                    <div><input id="lado-tq" type="number" /></div>
+                </div>
+                <div id="divCirculo" class="hide">
+                    <h2>Círculo</h2>
+                    <div><label>Radio (r)</label></div>
+                    <div><input id="radio-circ" type="number" /></div>
+                </div>
+                <div id="divElipse" class="hide">
+                    <h2>Elipse</h2>
+                    <div><label>Semieje Mayor (a)</label></div>
+                    <div><input id="semieje-a-e" type="number" /></div>
+                    <div><label>Semieje Menor (b)</label></div>
+                    <div><input id="semieje-b-e" type="number" /></div>
+                </div>
+                <div id="divPoligonoRegular" class="hide">
+                    <h2>Polígono Regular</h2>
+                    <p class="data-info">Perímetro: Lado (L). Área: Lado y Apotema (a).</p>
+                    <div><label>Lado (L)</label></div>
+                    <div><input id="lado-pol" type="number" /></div>
+                    <div><label>Apotema (a) (Área)</label></div>
+                    <div><input id="apotema-pol" type="number" /></div>
+                    <input type="hidden" id="numLados" value="0" />
+                </div>
+            </div> <div class="div-resultado">
+                <div><label>Resultado</label></div>
+                <div><input id="resultado" type="text" disabled="true" placeholder="0.00" /></div>
+                <div><button id="btnCalcular">Calcular</button></div>
+            </div>
+
+        </div> <div id="menuFiguras" class="menu-columna">
+            <h2>Figura / Cuerpo</h2>
+            <div>
+                <select id="figuraGeometrica" size="15">
+                    <optgroup label="Cuerpos 3D">
+                        <option value="cubo">Cubo</option>
+                        <option value="prisma-rectangular">Prisma Rectangular</option>
+                        <option value="cilindro">Cilindro</option>
+                        <option value="cono">Cono</option>
+                        <option value="esfera">Esfera</option>
+                    </optgroup>
+                    <optgroup label="Cuadriláteros 2D">
+                        <option value="cuadrado">Cuadrado</option>
+                        <option value="rectangulo">Rectángulo</option>
+                        <option value="rombo">Rombo</option>
+                        <option value="paralelogramo">Paralelogramo</option>
+                        <option value="trapecio">Trapecio</option>
+                    </optgroup>
+                    <optgroup label="Triángulos 2D">
+                        <option value="triangulo-isosceles">Isósceles</option>
+                        <option value="triangulo-equilatero">Equilátero</option>
+                        <option value="triangulo-escaleno">Escaleno</option>
+                        <option value="triangulo-base-altura">Base/Altura</option>
+                    </optgroup>
+                    <optgroup label="Otros 2D">
+                        <option value="pentagono-regular">Pentágono Reg.</option>
+                        <option value="hexagono-regular">Hexágono Reg.</option>
+                        <option value="circulo">Círculo</option>
+                        <option value="elipse">Elipse</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        
+    </div> </body>
+
+</html>

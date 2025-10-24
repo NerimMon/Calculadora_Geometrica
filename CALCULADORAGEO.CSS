@@ -1,0 +1,320 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background: transparent;
+}
+
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+    background: 
+        linear-gradient(45deg, #ff6b6b, #ffe66d, #6bccf9, #a7e9af, #cf5dff),
+        url('https://source.unsplash.com/random/1920x1080/?geometric,abstract') no-repeat center center;
+    background-size: cover;
+    animation: gradientShift 15s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    z-index: 1;
+}
+
+h2 {
+    color: #4a4a4a;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.hide {
+    display: none !important;
+}
+
+#mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 95%;
+    max-width: 1200px;
+    gap: 30px;
+    z-index: 1;
+}
+
+#mainContainer > div {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-columna {
+    flex: 1;
+    min-width: 180px;
+    max-width: 250px;
+}
+
+.datos-centrales-columna {
+    flex: 2;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.datos-centrales-columna > div {
+    width: 100%;
+    max-width: 400px;
+}
+
+p.data-info {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin: 5px 0 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+#figuraGeometrica {
+    width: 100%;
+    height: 380px;
+    border: 1px solid #a0a0a0;
+    border-radius: 8px;
+    font-size: 1.1em;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+#figuraGeometrica:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+#figuraGeometrica optgroup {
+    font-weight: bold;
+    color: #007bff;
+}
+
+#figuraGeometrica option {
+    padding: 5px 0;
+    margin-bottom: 2px;
+    transition: background-color 0.2s ease;
+}
+
+#figuraGeometrica option:hover {
+    background-color: #e0f2ff;
+    color: #0056b3;
+}
+#figuraGeometrica option:checked {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.radio-option {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+}
+
+#divOperacionSeleccion label {
+    display: inline-block;
+    font-weight: 500;
+    margin-left: 8px;
+    color: #4a4a4a;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+#divOperacionSeleccion input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #007bff;
+    cursor: pointer;
+}
+
+.div-resultado {
+    background-color: rgba(233, 242, 255, 0.8) !important;
+    border: 1px solid rgba(204, 229, 255, 0.5) !important;
+    padding: 20px !important;
+    margin-top: 30px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 10px;
+}
+
+input[type="number"], 
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    box-sizing: border-box; 
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="number"]:focus, 
+input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+button#btnCalcular {
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+button#btnCalcular:hover {
+    background-color: #218838;
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+}
+
+button#btnCalcular:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.2);
+}
+
+.error-message, .success-message {
+    padding: 12px 25px;
+    margin: 15px 0;
+    border: 1px solid;
+    line-height: 1.5;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    width: 95%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.error-message {
+    background-color: rgba(248, 215, 218, 0.8);
+    border-color: rgba(245, 198, 203, 0.8);
+    color: #721c24; 
+}
+
+.success-message {
+    background-color: rgba(212, 237, 218, 0.8); 
+    border-color: rgba(195, 230, 203, 0.8);
+    color: #155724; 
+}
+
+.campo-requerido {
+    border: 2px solid #dc3545 !important; 
+    background-color: rgba(255, 234, 234, 0.95) !important; 
+}
+
+input#resultado[disabled] {
+    background-color: rgba(255, 255, 255, 0.9) !important; 
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.6em;
+    text-align: center;
+    border: 2px dashed #007bff;
+    padding: 15px;
+}
+
+#divResultado {
+    display: none; 
+}
+
+@media (max-width: 992px) {
+    #mainContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .menu-columna, .datos-centrales-columna {
+        width: 90% !important;
+        max-width: 500px !important;
+        min-width: unset;
+    }
+
+    #figuraGeometrica {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    #mainContainer {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    #mainContainer > div {
+        padding: 15px;
+    }
+
+    button#btnCalcular {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
